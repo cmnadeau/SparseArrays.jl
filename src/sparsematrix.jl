@@ -4096,7 +4096,7 @@ function is_hermsym(A::AbstractSparseMatrixCSC, check::Function)
 
             # Diagonal element
             if row == col
-                if val != check(val)
+                if !(val === check(val))
                     return false
                 end
             else
@@ -4130,7 +4130,7 @@ function is_hermsym(A::AbstractSparseMatrixCSC, check::Function)
 
                 # A[i,j] and A[j,i] exists
                 if row2 == col
-                    if val != check(nzval[offset])
+                    if !(val === check(nzval[offset]))
                         return false
                     end
                     tracker[row] += 1
